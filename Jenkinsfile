@@ -15,7 +15,8 @@ pipeline {
              }
         stage('Creating Docker Container') {
            steps {
-                 sh "docker container rm -f $(docker container -aq)"
+                 def docrm = docker container -aq
+                 sh "docker container rm -f ${docrm}"
                  sh "docker container run -it -d -p 83:80 --name mytestsrv1 demo-image:${BUILD_NUMBER}"
              }  
           }
