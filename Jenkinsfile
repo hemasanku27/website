@@ -14,9 +14,8 @@ pipeline {
                }
              }
         stage('Creating Docker Container') {
-           steps {
-                 def docrm = "docker container -aq"
-            sh "docker container rm -f $(${docrm})"
+         steps {
+            sh "docker ps -q -f status=running | xargs --no-run-if-empty docker rm"
                  sh "docker container run -it -d -p 83:80 --name mytestsrv1 demo-image:${BUILD_NUMBER}"
              }  
           }
