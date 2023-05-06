@@ -15,7 +15,7 @@ pipeline {
              }
         stage('Creating Docker Container') {
          steps {
-            sh "sudo docker ps -q -f status=up | xargs --no-run-if-empty docker rm"
+            sh "sudo docker ps -q -f  | xargs --no-run-if-empty docker rm"
                  sh "sudo docker container run -it -d -p 83:80 --name mytestsrv1 demo-image:${BUILD_NUMBER}"
              }  
           }
